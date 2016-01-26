@@ -11,7 +11,9 @@ Param
 (
     [Parameter(Position=0)] $Source,
     [Parameter(Mandatory=$true,Position=1)] $RemoteDestination,
-    [Parameter(Mandatory=$true,Position=2)][ValidateScript({
+    [Parameter(Mandatory=$true,Position=2)]
+    [ValidateScript({
+    
       
       If($_ -match "^[0-9]+$"){
       $True
@@ -22,6 +24,7 @@ Param
     })
     ]$Port,
     [Parameter(Position=3)][ValidateSet('TCP','UDP')] $Protocol = 'TCP',
+    [Parameter(Position=4)]$credential,
     [Switch] $Iterate
 )
 
@@ -37,8 +40,11 @@ Param
        
     }
     Else  #Prompt for credentials when Source is not the local machine.
-    {     
-        $creds = Get-Credential
+    {   
+        if ($credential -eq $null){  
+            $creds = Get-Credential
+        }
+        Else {$creds = $credential}
 
         Do
         {
