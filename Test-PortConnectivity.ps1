@@ -155,5 +155,5 @@ Function Telnet-Port($RemoteDestination, $port, $Protocol)
 
              }
      }
-    return ($result |select Source,Destination,Protocol,Port,Connected  | ft)
+    return ($result |select Source,Destination,Protocol,Port,Connected)
 }
