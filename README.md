@@ -22,4 +22,4 @@ Test-PortConnectivity -Source $EUCAS -RemoteDestination $EUMBX -Port 135 -Iterat
 Test-PortConnectivity -Source 'localhost' -RemoteDestination '127.0.0.1' -Port 135 -Iterate -protocol TCP
 ```
 
-![Result](https://gitlab.casfs.co.uk/dnewsholme/Test-PortConnectivity/raw/master/Resources/Capture.PNG)
+![Result](Resources/Capture.PNG)
