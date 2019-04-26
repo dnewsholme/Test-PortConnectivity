@@ -30,7 +30,7 @@ function Publish-ListeningPort {
         [Parameter(Mandatory = $false, Position = 2)][string]$RemoteDestination,
         [Parameter(Mandatory = $false, Position = 3)][pscredential]$credential,
         [Parameter(Mandatory = $false, Position = 4)][switch]$asJob
-        
+
 
 
     )
@@ -57,7 +57,7 @@ function Publish-ListeningPort {
             Open-Port @parms
         }
 
-        
+
     }
 
 }
