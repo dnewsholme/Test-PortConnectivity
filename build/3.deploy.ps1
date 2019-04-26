@@ -9,7 +9,7 @@ param(
 $modulename = $($env:CI_PROJECT_NAME).tolower()
 
 Remove-Item "$modulepath\$modulename" -Recurse -Force -erroraction silentlycontinue
-Copy-Item ".\$modulename" -Recurse -Destination $modulepath
+Copy-Item "..\$psscriptroot\$modulename" -Recurse -Destination $modulepath -Force
 
 if ($($env:repotype) -eq "psgallery") {
     Publish-Module -Name $modulename -NuGetApiKey $($env:apikey) -Verbose
