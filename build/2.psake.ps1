@@ -67,7 +67,7 @@ Task Build -Depends Clean {
     $exportedfunctions = $Functions.Name -replace ".ps1"
     $exportedfunctions | ForEach-Object {Write-Verbose $($_) -Verbose}
     $PSD1Path = Join-Path -path $ModPath -ChildPath "$($Projectname).psd1"
-    $Null = mkdir $ModPath
+    mkdir $ModPath
     $functions | foreach-object {Copy-Item -Path $_.FullName -Destination $ModPath -Verbose}
     Copy-Item "$($projectroot)\build\$($Projectname).psm1" $ModPath -Verbose
     New-ModuleManifest -Guid $Guid `
@@ -94,7 +94,7 @@ Task Build -Depends Clean {
     # Check build
     foreach ($i in $Functions) {
         try {
-            Test-Path $ProjectRoot\$ModuleName\$($i.Name)
+            Test-Path $ProjectRoot\$ModuleName\$($i.Name) -ErrorAction stop
         }
         catch {
             throw "$($i.Name) missing from build location"

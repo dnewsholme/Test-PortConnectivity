@@ -40,7 +40,7 @@ build:
     - powershell.exe -file .\build\0.build.ps1
   artifacts:
     paths:
-      - autoseeding
+      - $($env:reponame)
   only:
     - master
 
