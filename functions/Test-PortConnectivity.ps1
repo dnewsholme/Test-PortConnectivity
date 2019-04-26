@@ -121,5 +121,5 @@ Function Connect-Port($RemoteDestination, $port, $Protocol) {
 
         }
     }
-    return ($result |select-obj Source, Destination, Protocol, Port, Connected)
+    return ($result |select-object Source, Destination, Protocol, Port, Connected)
 }
