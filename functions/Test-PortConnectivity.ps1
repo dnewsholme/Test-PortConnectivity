@@ -4,18 +4,7 @@ Function Test-PortConnectivity() {
     (
         [Parameter(Position = 0)] $Source,
         [Parameter(Mandatory = $true, Position = 1)] $RemoteDestination,
-        [Parameter(Mandatory = $true, Position = 2)]
-        [ValidateScript( {
-
-
-                If ($_ -match "^[0-9]+$") {
-                    $True
-                }
-                else {
-                    Throw "A port should be a numeric value, and $_ is not a valid number"
-                }
-            })
-        ]$Port,
+        [Parameter(Mandatory = $true, Position = 2)][ValidateRange(0,65535)]$Port,
         [Parameter(Position = 3)][ValidateSet('TCP', 'UDP')] $Protocol = 'TCP',
         [Parameter(Position = 4)][pscredential]$credential,
         [Switch] $Iterate
