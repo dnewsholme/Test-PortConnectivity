@@ -1,5 +1,7 @@
 # Tests Ports Between Devices
 
+Powershell Core compatible.
+
 ## Examples
 
 ```powershell
