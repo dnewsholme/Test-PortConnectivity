@@ -1,0 +1,1 @@
+get-childitem $psscriptroot\*.ps1 -recurse | Where-Object {$_.fullname -notlike "*.Tests*" -and $_.FullName -notlike "*Configuration*" -and $_.FullName -notlike "*build*"} | ForEach-Object {. $_.Fullname }

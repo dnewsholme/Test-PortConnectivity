@@ -1,4 +1,4 @@
-<#
+﻿<#
 .SYNOPSIS
 Open a listening TCP port
 
@@ -23,20 +23,20 @@ Daryl Newsholme
 
 function Publish-ListeningPort {
     param(
-  
+
         [Parameter(Mandatory = $true, Position = 0)][int][ValidateRange(0, 65535)]$port,
         [Parameter(Mandatory = $false, Position = 1)][switch]$exitonconnect
     )
-    $endpoint = new-object System.Net.IPEndPoint ([system.net.ipaddress]::any, $port)    
+    $endpoint = new-object System.Net.IPEndPoint ([system.net.ipaddress]::any, $port)
     $listener = new-object System.Net.Sockets.TcpListener $endpoint
     $listener.server.ReceiveTimeout = 3000
-    $listener.start()    
+    $listener.start()
     try {
-        Write-Host "Listening on port $port, press CTRL+C to cancel"
+        Write-Information "Listening on port $port, press CTRL+C to cancel"
         While ($true) {
             if (!$listener.Pending()) {
-                Start-Sleep -Seconds 1; 
-                continue; 
+                Start-Sleep -Seconds 1;
+                continue;
             }
             $client = $listener.AcceptTcpClient()
             $client.client.RemoteEndPoint | Add-Member -NotePropertyName DateTime -NotePropertyValue (get-date) -PassThru
@@ -47,11 +47,11 @@ function Publish-ListeningPort {
         }
     }
     catch {
-        Write-Error $_          
+        Write-Error $_
     }
     finally {
         $listener.stop()
-            
+
     }
 
 }
