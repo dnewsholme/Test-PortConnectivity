@@ -27,8 +27,8 @@ function Publish-ListeningPort {
 
         [Parameter(Mandatory = $true, Position = 0)][int][ValidateRange(0, 65535)]$port,
         [Parameter(Mandatory = $false, Position = 1)][switch]$exitonconnect,
-        [Parameter(Mandatory = $false, Position = 2)][string]$RemoteDestination,
-        [Parameter(Mandatory = $false, Position = 3)][pscredential]$credential,
+        [Parameter(Mandatory = $false, Position = 2, ParameterSetName = "remote")][string]$RemoteDestination,
+        [Parameter(Mandatory = $false, Position = 3, ParameterSetName = "remote")][pscredential]$credential,
         [Parameter(Mandatory = $false, Position = 4)][switch]$asJob
 
 
