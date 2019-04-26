@@ -11,6 +11,15 @@ Port number
 .PARAMETER exitonconnect
 Cause the function to close the port after the first connection to the port.
 
+.PARAMETER remotedestination
+The name of the remote computer to start the port listener on.
+
+.PARAMETER credential
+The credentials to connect to the specified remote computer.
+
+.PARAMETER asjob
+Runs the listener in a powershell job, this stops it taking over the host preventing other commands running.
+
 .EXAMPLE
 Publish-ListeningPort -port 443
 
