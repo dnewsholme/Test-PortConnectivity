@@ -38,7 +38,7 @@ Function Test-PortConnectivity() {
         Else {$creds = $credential}
         Do {
             Foreach ($Src in $Source) {
-                Invoke-command -ComputerName $Src -Credential $creds -ScriptBlock ${Function:Telnet-Port} -ArgumentList $RemoteDestination, $port, $Protocol
+                Invoke-command -ComputerName $Src -Credential $creds -ScriptBlock ${Function:Connect-Port} -ArgumentList $RemoteDestination, $port, $Protocol
             }
 
             #Initiate sleep to slow down Continous telnet
@@ -132,5 +132,5 @@ Function Connect-Port($RemoteDestination, $port, $Protocol) {
 
         }
     }
-    return ($result | Select-Object Source, Destination, Protocol, Port, Connected)
+    return ($result |select-obj Source, Destination, Protocol, Port, Connected)
 }

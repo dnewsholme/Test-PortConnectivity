@@ -25,6 +25,34 @@ function Publish-ListeningPort {
     param(
 
         [Parameter(Mandatory = $true, Position = 0)][int][ValidateRange(0, 65535)]$port,
+        [Parameter(Mandatory = $false, Position = 1)][switch]$exitonconnect,
+        [Parameter(Mandatory = $false, Position = 2)][string]$RemoteDestination,
+        [Parameter(Mandatory = $false, Position = 3)][pscredential]$credential
+
+
+    )
+    if ($remotedestination){
+        Invoke-command -ComputerName $remotedestination -Credential $credential -ScriptBlock ${Function:Open-Port} -ArgumentList $port,$exitonconnect
+
+    }
+    Else {
+        switch ($exitonconnect){
+            True{
+                Open-Port -port $port -exitonconnect
+
+            }
+            False {
+                Open-Port -port $port
+
+            }
+        }
+    }
+
+}
+
+Function Open-Port {
+    Param (
+        [Parameter(Mandatory = $true, Position = 0)][int][ValidateRange(0, 65535)]$port,
         [Parameter(Mandatory = $false, Position = 1)][switch]$exitonconnect
     )
     $endpoint = new-object System.Net.IPEndPoint ([system.net.ipaddress]::any, $port)
@@ -32,7 +60,7 @@ function Publish-ListeningPort {
     $listener.server.ReceiveTimeout = 3000
     $listener.start()
     try {
-        Write-Information "Listening on port $port, press CTRL+C to cancel"
+        Write-Verbose "Listening on port $port, press CTRL+C to cancel"
         While ($true) {
             if (!$listener.Pending()) {
                 Start-Sleep -Seconds 1;
