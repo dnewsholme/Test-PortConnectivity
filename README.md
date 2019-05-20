@@ -25,6 +25,7 @@ Test-PortConnectivity -Source server01.contoso.com -RemoteDestination server02.c
 ```
 
 ![Result](Resources/Capture.PNG)
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fdnewsholme%2FTest-PortConnectivity.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fdnewsholme%2FTest-PortConnectivity?ref=badge_shield)
 
 ## Create Listening Port Examples
 
@@ -53,3 +54,6 @@ Publish-ListeningPort -port 443 -remotedestination server01.contoso.com -exitonc
 ```
 
 ![Listen Port](./Resources/listenport.png)
+
+## License
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fdnewsholme%2FTest-PortConnectivity.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fdnewsholme%2FTest-PortConnectivity?ref=badge_large)
